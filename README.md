@@ -12,6 +12,8 @@ There are 5 steps in this demo.
 
 # 0. Prerequisite
 * DNS masq (https://thekelleys.org.uk/dnsmasq/doc.html)
+* mkcert (https://github.com/FiloSottile/mkcert)
+  * To set up DNS masq and mkcert, please refer this. https://github.com/masa-snyk/broker_gitlab_local
 * Kind (https://kind.sigs.k8s.io/)
 * Clone this repo.
 
@@ -23,8 +25,21 @@ Run following:
 1.create_gitlab.sh
 ```
 
+First time you provision GitLab, it would take 10~15 min. 
+Please check the log by running:
+```
+docker logs -f gitlab
+```
+
 When Gitlab is created, `GITLAB_HOST` file is also created for later use.
+
+Your Gitlab instance should be able up at `$GITLAB_HOST`. 
+```
+open https://$(cat GITLAB_HOST)
+```
+
 After Gitlab is ready, please login to Gitlab with following credentials.
+
 
 ```
 Username: root
@@ -39,6 +54,12 @@ Run following:
 ```
 
 Push some sample repo to Gitlab for testing.
+
+_**Note**: You might be asked to enter credential_. Then enter followings.
+```
+Username: root
+Password: Passw0rd
+```
 
 # 3. Create local K8s cluster (In this demo, Kind is used)
 
@@ -72,6 +93,8 @@ For baremetal K8s, this step is necessary for:
 * Healthcheck/systemcheck from outside of K8s cluster
   
 If you already have external loadbalancer (or using some managed K8s such as EKS, GKE, AKS, etc), this step is not necessary.
+
+In this demo, Nginx is used for Ingress controller. You can choose any of your favorite ingress controler, like contour, kong, etc. 
 
 Run following:
 ```

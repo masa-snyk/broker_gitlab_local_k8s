@@ -2,3 +2,4 @@ volume/*
 GITLAB_TOKEN
 GITLAB_HOST
 BROKER_TOKEN
+snyk-broker/*
