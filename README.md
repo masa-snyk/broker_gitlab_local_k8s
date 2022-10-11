@@ -112,6 +112,6 @@ curl http://broker.test/systemcheck
 
 # To do
 
-[] Container registry agent (CRA) and broker for CRA
-[] Code agent
-[] Add more instructions in README
+* [] Container registry agent (CRA) and broker for CRA
+* [] Code agent
+* [] Add more instructions in README
