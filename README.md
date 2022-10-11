@@ -13,6 +13,7 @@ There are 5 steps in this demo.
 # 0. Prerequisite
 * DNS masq (https://thekelleys.org.uk/dnsmasq/doc.html)
 * Kind (https://kind.sigs.k8s.io/)
+* Clone this repo.
 
 # 1. Create GitLab instance with docker
 
