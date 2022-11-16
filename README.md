@@ -16,6 +16,7 @@ There are 5 steps in this demo.
   * To set up DNS masq and mkcert, please refer this. https://github.com/masa-snyk/broker_gitlab_local
 * Kind (https://kind.sigs.k8s.io/)
 * Clone this repo.
+* We will use service called nip (https://nip.io) so that you don't need to modify /etc/hosts to match the hostnames in your local K8s pods.
 
 # 1. Create GitLab instance with docker
 
@@ -46,6 +47,19 @@ Username: root
 Password: Passw0rd
 ```
 
+Once logged in, create `Personal access token`. (Preference -> Access Tokens)
+Create a token with following scopes.
+- api - For Broker integration
+- read_repositoy - For Code agent to read your repo
+- read_registry - For Container scan
+- write_registry - For this demo only (Not necessary for scan)
+
+Copy the token and store it in your local file `GITLAB_TOKEN`.
+
+```
+cat SL6WK2Etzkb1Txdrtpko > GITLAB_TOKEN
+```
+
 # 2. Push some sample repo to gitlab
 
 Run following:
@@ -62,6 +76,16 @@ Password: Passw0rd
 ```
 
 # 3. Create local K8s cluster (In this demo, Kind is used)
+
+First, we need a Broker token from Snyk platform.
+
+Log in to Snyk UI, and get Broker token from integration page.
+
+Copy the token to your local file `BROKER_TOKEN`. 
+
+```
+cat 350a39e2-3e4a-481a-a7ff-eb51ca9e2442 > BROKER_TOKEN
+```
 
 Run following:
 ```
